@@ -1,0 +1,87 @@
+.bx-wrapper {
+	POSITION: relative; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.bx-wrapper IMG {
+	DISPLAY: block; MAX-WIDTH: 100%
+}
+.bx-wrapper .bx-viewport {
+	BORDER-BOTTOM: #fff 0px solid; BORDER-LEFT: #fff 0px solid; BACKGROUND: #fff; BORDER-TOP: #fff 0px solid; BORDER-RIGHT: #fff 0px solid; LEFT: -5px; box-shadow: 0 0 5px #ccc; -moz-box-shadow: 0 0 5px #ccc; -webkit-box-shadow: 0 0 5px #ccc; -webkit-transform: translatez(0); -moz-transform: translatez(0); -ms-transform: translatez(0); -o-transform: translatez(0); transform: translatez(0)
+}
+.bx-wrapper .bx-pager {
+	POSITION: absolute; WIDTH: 100%; BOTTOM: -30px
+}
+.bx-wrapper .bx-controls-auto {
+	POSITION: absolute; WIDTH: 100%; BOTTOM: -30px
+}
+.bx-wrapper .bx-loading {
+	Z-INDEX: 2000; POSITION: absolute; MIN-HEIGHT: 50px; WIDTH: 100%; BACKGROUND: url(//www.agilent.com/cs/home_images/bx_loader.gif) #fff no-repeat center center; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.bx-wrapper .bx-pager {
+	TEXT-ALIGN: center; FONT-FAMILY: Arial; COLOR: #666; FONT-SIZE: 0.85em; FONT-WEIGHT: bold; PADDING-TOP: 20px
+}
+.bx-wrapper .bx-pager .bx-pager-item {
+	DISPLAY: inline-block
+}
+.bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+	DISPLAY: inline-block
+}
+.bx-wrapper .bx-default-pager.bx-pager A {
+	TEXT-INDENT: -9999px; MARGIN: 0px 5px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 10px; DISPLAY: block; BACKGROUND: #666; HEIGHT: 10px; -webkit-border-radius: 5px; border-radius: 5px; -moz-border-radius: 5px
+}
+.bx-wrapper .bx-default-pager.bx-pager A:hover {
+	BACKGROUND: #000
+}
+.bx-wrapper .bx-default-pager.bx-pager A.active {
+	BACKGROUND: #000
+}
+.bx-wrapper .bx-prev {
+	BACKGROUND: url(//www.agilent.com/cs/home_images/controls.png) no-repeat 0px -32px; LEFT: 10px
+}
+.bx-wrapper .bx-next {
+	BACKGROUND: url(//www.agilent.com/cs/home_images/controls.png) no-repeat -43px -32px; RIGHT: 10px
+}
+.bx-wrapper .bx-prev:hover {
+	BACKGROUND-POSITION: 0px 0px
+}
+.bx-wrapper .bx-next:hover {
+	BACKGROUND-POSITION: -43px 0px
+}
+.bx-wrapper .bx-controls-direction A {
+	Z-INDEX: 9999; POSITION: absolute; MARGIN-TOP: -16px; TEXT-INDENT: -9999px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 32px; HEIGHT: 32px; TOP: 50%
+}
+.bx-wrapper .bx-controls-direction A.disabled {
+	DISPLAY: none
+}
+.bx-wrapper .bx-controls-auto {
+	TEXT-ALIGN: center
+}
+.bx-wrapper .bx-controls-auto .bx-start {
+	TEXT-INDENT: -9999px; MARGIN: 0px 3px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 10px; DISPLAY: block; BACKGROUND: url(//www.agilent.com/cs/home_images/controls.png) no-repeat -86px -11px; HEIGHT: 11px
+}
+.bx-wrapper .bx-controls-auto .bx-start:hover {
+	BACKGROUND-POSITION: -86px 0px
+}
+.bx-wrapper .bx-controls-auto .active.bx-start {
+	BACKGROUND-POSITION: -86px 0px
+}
+.bx-wrapper .bx-controls-auto .bx-stop {
+	TEXT-INDENT: -9999px; MARGIN: 0px 3px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 9px; DISPLAY: block; BACKGROUND: url(//www.agilent.com/cs/home_images/controls.png) no-repeat -86px -44px; HEIGHT: 11px
+}
+.bx-wrapper .bx-controls-auto .bx-stop:hover {
+	BACKGROUND-POSITION: -86px -33px
+}
+.bx-wrapper .bx-controls-auto .active.bx-stop {
+	BACKGROUND-POSITION: -86px -33px
+}
+.bx-wrapper .bx-has-pager.bx-has-controls-auto.bx-controls .bx-pager {
+	TEXT-ALIGN: left; WIDTH: 80%
+}
+.bx-wrapper .bx-has-pager.bx-has-controls-auto.bx-controls .bx-controls-auto {
+	WIDTH: 35px; RIGHT: 0px
+}
+.bx-wrapper .bx-caption {
+	POSITION: absolute; WIDTH: 100%; BOTTOM: 0px; BACKGROUND: #666; LEFT: 0px
+}
+.bx-wrapper .bx-caption SPAN {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; DISPLAY: block; FONT-FAMILY: Arial; COLOR: #fff; FONT-SIZE: 0.85em; PADDING-TOP: 10px
+}

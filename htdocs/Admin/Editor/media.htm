@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>插入FLASH动画</title>
+<link href="../xfok.css" rel="stylesheet" type="text/css">
+</head>
+
+<SCRIPT event=onclick for=Ok language=JavaScript>
+  window.returnValue = path.value+"*"+selrow.value+"*"+selcol.value
+  window.close();
+</SCRIPT>
+
+<body bgcolor="#eeeeee" topmargin="0">
+<DIV align=center>
+    
+  <table width="95%" border="0" cellspacing="1" cellpadding="4">
+    <tr> 
+        <td colspan="2">插入网上视频文件 支持格式为：avi、wmv、asf</td>
+      </tr>
+      <tr> 
+        <td width="10%">路径： </td>
+        <td width="90%"><INPUT id=path size=22 value="http://">
+          <input type=button value='本地视频文件，不上传' onclick='filesck()'></td>
+      </tr>
+      <tr> 
+        <td>宽度：</td>
+        <td><INPUT id=selrow size=7 value=500></td>
+      </tr>
+      <tr> 
+        <td>高度：</td>
+        <td><INPUT id=selcol size=7 value=300>
+        <input type=file id=files style='display:none'></td>
+      </tr>
+      <tr align="center"> 
+        <td colspan="2"> <input type="submit" name="Submit" id="Ok" value="确定"> 
+          &nbsp; <input type="button" name="Submit" value="取消" onclick=window.close();> 
+        </td>
+      </tr>
+    </table>
+<script>
+function filesck(){
+files.click();
+aaa=document.all("files").value
+if(aaa!=""){
+str1=aaa.lastIndexOf('.')
+str2=aaa.substr(str1+1,aaa.length)
+if(str2=="wmv"||str2=="asf"||str2=="avi"){path.value="file:///"+aaa.replace(/\\/g,"/")}
+else{alert('此文件非常规视频文件,正确视频文件格式应为wmv,asf,avi格式')}
+}}
+</script>
+</div>
+</body>
+</html>

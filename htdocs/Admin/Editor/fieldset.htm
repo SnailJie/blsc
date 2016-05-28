@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>FieldSet</title>
+<link href="../xfok.css" rel="stylesheet" type="text/css">
+</head>
+<SCRIPT event=onclick for=Ok language=JavaScript>
+  window.returnValue = a.value+"*"+b.value+"*"+c.value+"*"+d.value
+  window.close();
+</SCRIPT>
+<body bgcolor="#eeeeee" topmargin="10">
+<div align="center"><br>
+  <table width="95%" border="0" cellspacing="2" cellpadding="2">
+    <tr>
+      <td align="center">栏目： 
+        <select id=a>
+          <option value=left>不应用 
+          <option value=left>左对齐 
+          <option value=center>中对齐 
+          <option value=right>右对齐 
+        </select>
+        标题： 
+        <select id=b>
+          <option value=left>不应用 
+          <option value=left>左对齐 
+          <option value=center>中对齐 
+          <option value=right>右对齐 </select> </td>
+    </tr>
+    <tr>
+      <td align="center">边框颜色： 
+        <input id=c onClick='p=showModalDialog("editcolor.htm",window,"center:yes;dialogHeight:320px;dialogWidth:300px;help:no;status:no");if(p!=null){this.value=p.split("*")[0]}else{this.value=""}' readonly> 
+      </td>
+    </tr>
+    <tr>
+      <td align="center">背景颜色： 
+        <input id=d onClick='p=showModalDialog("editcolor.htm",window,"center:yes;dialogHeight:320px;dialogWidth:300px;help:no;status:no");if(p!=null){this.value=p.split("*")[0]}else{this.value=""}' readonly> 
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+<input type=submit value='完成插入' id=Ok></td>
+    </tr>
+  </table>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.tt-dropdown-menu {
+	BORDER-BOTTOM: #dce4ec 2px solid; POSITION: absolute !important; TEXT-ALIGN: left; BORDER-LEFT: #dce4ec 2px solid; WIDTH: 295px; BACKGROUND: #f2f6f9; BORDER-TOP: #dce4ec 2px solid; TOP: 29px !important; BORDER-RIGHT: #dce4ec 2px solid
+}
+.Explorer8 .tt-dropdown-menu {
+	BORDER-BOTTOM: #dce4ec 2px solid; BORDER-LEFT: #dce4ec 2px solid; WIDTH: 350px; BACKGROUND: #f2f6f9 0px 0px; BORDER-TOP: #dce4ec 2px solid; BORDER-RIGHT: #dce4ec 2px solid
+}
+.browserIE .tt-dropdown-menu {
+	RIGHT: -52px !important
+}
+.tt-dropdown-menu H3 {
+	PADDING-BOTTOM: 2px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; FONT-SIZE: 18px; PADDING-TOP: 5px
+}
+.tt-suggestions {
+	
+}
+.tt-suggestion {
+	BORDER-BOTTOM: #dce4ec 1px solid; PADDING-BOTTOM: 2px; MARGIN: 0px; PADDING-LEFT: 15px; PADDING-RIGHT: 10px; PADDING-TOP: 5px
+}
+.tt-is-under-cursor {
+	BACKGROUND: lightblue
+}
+.tt-dropdown-menu DIV {
+	FLOAT: none
+}
+.tt-hint {
+	DISPLAY: none
+}
+*:focus {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px
+}

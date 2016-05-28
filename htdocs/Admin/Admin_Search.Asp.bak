@@ -1,0 +1,211 @@
+<!--#include file="../inc/const.asp"-->
+<!--#include file="inc/char.asp"-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title><%=site_info(0)%></title>
+<link href="xfok.css" type="text/css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>
+<body text=#000000 leftmargin=0 topmargin=0 marginheight="0" marginwidth="0" bgcolor="#E5E5E5" onload="Kermy_JS('setDynaList(arrNSet)')">
+<script src="../js/selectlist.js"></script>
+<br>
+<%
+Dim Admin_flag,Action,ClassID,NClassID,NClass,strClass
+PageSize=CInt(Site_Info(9))
+Admin_flag="03"
+If Not CheckAdmin(Admin_Flag) Then
+    strMsg="<Li>您没有管理本页面的权限。"
+    Call Msg()
+Else
+    DataConn()
+    Dim keyword,soption
+    KeyWord=Trim(Request.QueryString("keyword"))
+    soption=CheckStr(Request.QueryString("soption"))
+    ClassID=Request.QueryString("ClassID")
+	NClassID=Request.QueryString("NClassID")
+	If ClassID="" Then ClassID=CInt(ClassID)
+	If NClassID="" Then NClassID=CInt(NClassID)
+    Select Case Request("Action")
+        Case "Search"
+            Call Search()
+            
+        Case Else
+            Call Main()
+    End Select
+End If
+
+DataClose()
+
+Sub Main()
+%>
+<form name="myform" method="get" action="?">
+  <table width="95%" border=0 align="center" cellpadding=5 cellspacing=1 class="border-all">
+    <tbody>
+      <tr> 
+        <th height=21 colspan="2" style="line-height:150%">内容搜索</th>
+      </tr>
+      <tr class="table_row_2"> 
+        <td width="21%"> 搜索关键字：</td>
+        <td width="79%"> <input name="keyword" type="text" class="editbox" id="keyword"></td>
+      </tr>
+      <input name="soption" type="hidden" value="0" checked>
+     <!-- <tr class="table_row_1"> 
+        <td>搜索选项：</td>
+        <td>
+		  <input name="soption" type="radio" value="0" checked>
+          标题 
+          <input type="radio" name="soption" value="1">
+          关键字 
+          <input type="radio" name="soption" value="2">
+          作者 
+		</td>
+      </tr>-->
+      <tr> 
+        <td>搜索分类：</td>
+        <td><%=CataLog(ClassID,NClassID)%></td>
+      </tr>
+      <tr> 
+        <th colspan="2"><input type="submit" name="Submit" value="提交" class="button">
+          &nbsp; 
+          <input type="reset" name="Submit2" value="重置" class="button">
+          <input name="action" type="hidden" id="action" value="Search"></th>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+
+<%End Sub
+
+Sub Search()
+	SqlStr=Null
+  SqlStr=" Where (A.content Like '%"&keyword&"%' or A.title Like '%"&keyword&"%' or A.sKey Like '%"&keyword&"%')"
+	  
+	If ClassID<>0 Then 
+			SqlStr=SqlStr&" AND C.ID="&ClassID
+		If NClassID<>0 Then  
+		  SqlStr=SqlStr&" AND a.nclassID="&NClassID
+		End If  
+	End If
+    
+    Set Rs=Server.Createobject("Adodb.Recordset")
+	SQL="SELECT A.ID,A.ClassID,A.NClassID,A.Title,A.content,A.Author,A.AddDate,A.Hits,A.Remark,A.isIndexPIc,A.isPic,A.TitleColor,C.Class,A.NClassid FROM Article A INNER JOIN Class C ON A.ClassID=c.ID  "&SqlStr&" ORDER BY A.ID DESC"
+	Rs.CursorLocation=3
+	Rs.Open SQL,Conn,1,1
+%>
+<script language=javascript>
+function CheckAll(form1) 
+ {
+  for (var i=0;i<form1.elements.length;i++)   
+   {
+    var e = form1.elements[i];
+    if (e.name != 'chkall')       e.checked = form1.chkall.checked; 
+   }
+  }
+</script>
+<form name="myform" method="post" action="Admin_Batch.Asp">
+  <table width="95%" border=0 align="center" cellpadding=2 cellspacing=1 class="border-all">
+    <tbody>
+      <tr> 
+        <th height=22 colspan="5">内容搜索结果</th>
+      </tr>
+      <tr class="TopTitle"> 
+        <td width="7%">编号</td>
+        <td>&nbsp;标题加入时间</td>
+        <td width="29%">所属分类</td> 
+        <td width="6%">操作</td>
+      </tr>
+      <%
+	ArticleCount=Rs.RecordCount
+    Dim Css,ID
+    Page=Request.QueryString("Page")
+    If Page="" Or Page<1 Then 
+        Page=1
+    Else
+        Page=Cint(Page)
+    End If 
+	I=1
+	If ArticleCount Mod Cint(PageSize)=0 Then
+	    PageCount= ArticleCount \ Cint(PageSize)
+	Else
+	    PageCount= ArticleCount \ Cint(PageSize)+1
+  	End If
+
+  	If Not (Rs.Bof And Rs.Eof) Then
+	   Rs.Movefirst
+	   If Page > PageCount Then Page = PageCount
+	   If Page<1 Then Page=1
+	      Rs.Move (Page-1) * Cint(PageSize)
+  	      Do While Not Rs.Eof And I<=PageSize
+	          If InStr(Session("sql_f"),Rs("ClassID"))<>0 Then
+	          	I=I+1      
+             Id=Rs("Id")			 
+             If I Mod 2=0 Then 
+                Css="Table_row_1"
+             Else
+                Css="Table_row_2"
+             End If
+            
+%>
+      <tr class="<%=css%>"> 
+        <td align=center><%=id%></td>
+        <td>&nbsp; <%Response.Write "<font color='#006699'>["&Rs("Class")&"]</font>&nbsp;&nbsp;"%> <a href="Admin_ArticleEdit.Asp?ID=<%=rs("id")%>"><%=CutStr(Rs("Title"),37)%></a> <%if rs("isIndexPic")=1 then response.write " <img src=images/img.gif alt=视点内容 align=absmiddle>"%> <%if rs("isPic")=1 then response.write " <img src=images/jpg.gif alt=图片内容 align=absmiddle>"%> &nbsp;&nbsp; </td>
+        <td align="center">
+          <%
+		If Rs("NClassID")=0 Then
+			NClass="→无二级分类"
+		Else
+			dim nclass,rs1
+			Set Rs1=Server.Createobject("Adodb.Recordset")
+			sql="SELECT * from nclass where id="&rs("nclassid")
+		rs1.Open sql,conn,1,1 
+		if not(rs1.eof and rs1.bof) then
+			nclass=rs1("nclass")
+		else 
+			nclass="无二级分类"
+		  end if 
+		  rs1.close
+		  set rs1=nothing
+			NClass="→"&nclass
+		End If		
+		strClass=Rs("Class")&NClass
+		Response.Write "<font style='color:#006699' title='"&strClass&"'>"&CutStr(strClass,25)&"</font>"
+		%>
+        </td> 
+        <td align=center><input name="ArticleID" type="checkbox" id="ArticleID" value="<%=id%>"></td>
+      </tr>
+      
+      <%end if
+	         Rs.Movenext
+  	      Loop
+	Else%>
+      <tr> 
+        <td height="25" colspan="5" align="center"><font color="#006699"><b>没有搜索到内容</b></font></td>
+      </tr>
+      <%	End If%>
+      <tr> 
+        <td height="30" colspan="5" class="table_row_1"> <%
+    Response.Write (ShowPage(PageCount,ArticleCount,Page,PageSize,"?Action=Search&Keyword="&keyword&"&soption="&soption&"&ClassID="&Request.QueryString("ClassID")&"&"))
+%> </td>
+      </tr>
+      <tr> 
+        <td height="30" colspan="5" class="table_row_2"> <table width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr> 
+              <td>移动内容:</td>
+              <td><%=CataLog(0,-1)%> <input type="checkbox" name="chkall" value="on" onClick="CheckAll(this.form)">
+                全选/取消 
+                <input name="action" type="radio" value="ArticleBatchDel">
+                批量删除 
+                <input type="radio" name="action" value="ArticleBatchMove">
+                批量移动 
+                <input name="Submit" type="submit" class="button" id="Submit" value="执行" onClick="{if(confirm('您确定执行的操作吗?')){return true;}return false;}"> 
+              </td>
+            </tr>
+          </table></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<%End Sub%>
+</body>
+</html>
