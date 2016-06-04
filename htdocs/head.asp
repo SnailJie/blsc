@@ -97,7 +97,7 @@ class=homeSearchTxt></SPAN></FORM></DIV>--></DIV>
      			 			
      			 			<!-- .topRtNav -->
 <DIV id=homeMainNav class=homeMainNav>
-	<div class="menu" >
+	<div class="menu" style="width: 1260px;">
      				<!--<form  method=post action=search.asp> 
      				<input  type="text" name="keyword" style="height:15px;" size="40" value='请输入要搜索的关键词' onBlur="if (value ==''){value='请输入要搜索的关键词'}" onFocus="if (value =='请输入要搜索的关键词'){value =''}" >
  
@@ -138,7 +138,9 @@ class=homeSearchTxt></SPAN></FORM></DIV>--></DIV>
 				End If 
 				rs.close
 				%>   
+           <li style="font-size:15px;"><a href="weatherAPI.asp">天气预报API</a></li>
 			</ul> 
+        
 </ul> 
 <div class="clear"> </div>
  </DIV><!-- #homeMainNav --></DIV><!-- .homeHeaderWraper --></DIV><!-- #homeHeaderDiv -->
