@@ -38,7 +38,7 @@ end if%>
 <DIV class=homeContainer>
     <DIV style="height:200px"></DIV>
     <DIV class="mycontext" >
-    <DIV class="url"><b>天气请求API，可直接调用：http://blsc.com/getWeatera.asp</b>
+    <DIV class="url"><b>天气请求API，可直接调用：http://blsc.com/getWeatera.asp，返回JSON格式数据</b>
 
     </DIV>
     <DIV class="description">

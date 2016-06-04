@@ -5,19 +5,41 @@
 
 <%  
 
-    '1.查看文件是否存在 2.存在查看创建日期  3.读写文件  4.解析数据
 
-    Dim ResultPh
+    Public ResultPh
     Public toResultobj,toResult
     '-------------------------创建文件-----------------------------
-    Set toResultobj = Server.CreateObject("Scripting.FileSystemObject")
-    ResultPh = Server.MapPath("\resultData.txt")
-    toResultobj.CreateTextFile ResultPh,true
-    '--------------------创建时间--------------------------------------
-    'Set fileInfo = objFSO.GetFile(Ph)
-    ' Response.Write(fileInfo.DateCreated)
-  '-------------------------获取数据----------------
 
+    Set toResultobj = Server.CreateObject("Scripting.FileSystemObject")
+      ResultPh = Server.MapPath("\resultData.txt")
+    If toResultobj.FileExists( ResultPh) Then
+        Set fileInfo = toResultobj.GetFile(ResultPh)
+        CreatDate=fileInfo.DateCreated
+        If DateDiff("n",CreatDate,Now)<30 Then
+            Call  reponseData()
+        Else
+             Call writeData()
+             Call reponseData()  
+        End If
+     
+    Else
+        Response.Write "File is not exist"
+        toResultobj.CreateTextFile ResultPh,true
+        Call writeData()
+        Call reponseData()
+    End If
+
+    
+Sub reponseData()
+     Set toResultobj2 = Server.CreateObject("Scripting.FileSystemObject")
+     Set resufile = toResultobj2.OpenTextFile(ResultPh,,True)
+    Response.Write resufile.ReadLine
+
+End Sub
+   
+    
+  '-------------------------获取数据----------------
+Sub writeData()
      '写入格式头   
     Set toResult = toResultobj.OpenTextFile(ResultPh,2,True)
     toResult.Write "{" & """"&"status"&""""&":"&""""&"ok"&""""&","
@@ -30,45 +52,45 @@
     toResult.Write ","
     getDataByLocation 117.9833,27
     toResult.Write ","
-    getDataByLocation 117.85            26.8833
+    getDataByLocation 117.85,26.8833
     toResult.Write ","
-    getDataByLocation 117.9667        26.8167
+    getDataByLocation 117.9667,26.8167
     toResult.Write ","
-    getDataByLocation 117.8833        26.8167
+    getDataByLocation 117.8833, 26.8167
     toResult.Write ","
-    getDataByLocation 117.55            26.9833
+    getDataByLocation 117.55,26.9833
     toResult.Write ","
-    getDataByLocation 117.6667        26.9333
+    getDataByLocation 117.6667,26.9333
     toResult.Write ","
-    getDataByLocation  117.7167        26.9333
+    getDataByLocation  117.7167,26.9333
     toResult.Write ","
-    getDataByLocation 117.9              27.15
+    getDataByLocation 117.9,27.15
     toResult.Write ","
-    getDataByLocation 117.9              27.0833
+    getDataByLocation 117.9,27.0833
     toResult.Write ","
-    getDataByLocation 117.8              27.0333
+    getDataByLocation 117.8,27.0333
     toResult.Write ","
-    getDataByLocation 117.8              26.95
+    getDataByLocation 117.8,26.95
     toResult.Write ","
-     getDataByLocation  117.7667        26.9167
+     getDataByLocation  117.7667,26.9167
     toResult.Write ","
-     getDataByLocation  118.1667        26.9333
+     getDataByLocation  118.1667,26.9333
     toResult.Write ","
-     getDataByLocation 117.7833       26.6833
+     getDataByLocation 117.7833,26.6833
     toResult.Write ","
-     getDataByLocation  117.9333       26.9667
+     getDataByLocation  117.9333,26.9667
     toResult.Write ","
-     getDataByLocation 117.892         26.792
+     getDataByLocation 117.892,26.792
     toResult.Write ","
-     getDataByLocation 117.917         26.796
+     getDataByLocation 117.917,26.796
     toResult.Write ","
-     getDataByLocation 117.683         26.816
+     getDataByLocation 117.683,26.816
     toResult.Write ","
-     getDataByLocation 117.7167      26.7667
+     getDataByLocation 117.7167,26.7667
     toResult.Write ","
-     getDataByLocation 118               26.8833
+     getDataByLocation 118,26.8833
     toResult.Write ","
-     getDataByLocation 117.8667      27.0333
+     getDataByLocation 117.8667,27.0333
 
     Set obj = Nothing
 
@@ -79,7 +101,7 @@
     Set toResultobj = Nothing
 
 
-
+    End Sub
       
    '-----------------------------------------------------------------------
   
